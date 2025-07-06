@@ -1,0 +1,15 @@
+{
+  "name": "Arch Linux Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "args": {
+      "USERNAME": "${localEnv:USER}",
+    }
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder}/dotfiles/.config,target=/home/${localEnv:USER}/.config,type=bind"
+  ],
+  "remoteUser": "${localEnv:USER}",
+  "updateRemoteUserUID": true
+}
