@@ -12,7 +12,7 @@ RUN pacman-key --init && \
   pacman -S --noconfirm git base-devel openssh sudo shadow zsh neovim starship ripgrep fd unzip go && \
   pacman -Scc --noconfirm
 
-# RUN pacman -S --noconfirm
+RUN pacman -S --noconfirm chezmoi
 
 # Create group using the GID argument
 RUN groupadd --gid ${USER_GID} ${USERNAME}

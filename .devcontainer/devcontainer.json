@@ -7,9 +7,9 @@
       "USERNAME": "${localEnv:USER}",
     }
   },
-  "mounts": [
-    "source=${localWorkspaceFolder}/dotfiles/.config,target=/home/${localEnv:USER}/.config,type=bind"
-  ],
+  //"mounts": [
+  // "source=${localWorkspaceFolder}/dotfiles/.config,target=/home/${localEnv:USER}/.config,type=bind"
+  //],
   "remoteUser": "${localEnv:USER}",
   "updateRemoteUserUID": true
 }
