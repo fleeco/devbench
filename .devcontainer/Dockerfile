@@ -30,10 +30,10 @@ RUN echo "${USERNAME}:password" | chpasswd
 RUN echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Copy dotfiles to the user's home directory (using username argument)
-COPY ./dotfiles/.zshrc /home/${USERNAME}/.zshrc
+# COPY ./dotfiles/.zshrc /home/${USERNAME}/.zshrc
 
 # Fix ownership using the username argument
-RUN chown ${USERNAME}:${USERNAME} /home/${USERNAME}/.zshrc
+# RUN chown ${USERNAME}:${USERNAME} /home/${USERNAME}/.zshrc
 
 # Switch to the user (using username argument)
 USER ${USERNAME}
