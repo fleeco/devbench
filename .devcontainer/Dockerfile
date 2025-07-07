@@ -12,7 +12,7 @@ RUN pacman-key --init && \
   pacman -S --noconfirm git base-devel openssh sudo shadow zsh neovim starship ripgrep fd unzip go && \
   pacman -Scc --noconfirm
 
-RUN pacman -S --noconfirm chezmoi
+RUN pacman -S --noconfirm chezmoi fzf
 
 # Create group using the GID argument
 RUN groupadd --gid ${USER_GID} ${USERNAME}
@@ -29,11 +29,19 @@ RUN echo "${USERNAME}:password" | chpasswd
 # Add user to sudoers using the username argument
 RUN echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# Copy dotfiles to the user's home directory (using username argument)
-# COPY ./dotfiles/.zshrc /home/${USERNAME}/.zshrc
-
-# Fix ownership using the username argument
-# RUN chown ${USERNAME}:${USERNAME} /home/${USERNAME}/.zshrc
+RUN cat << 'EOF' >> ~/.zshrc
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+bindkey -v
+zstyle :compinstall filename '/home/devuser/.zshrc'
+autoload -Uz compinit
+compinit
+# Because we are based
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+EOF
 
 # Switch to the user (using username argument)
 USER ${USERNAME}

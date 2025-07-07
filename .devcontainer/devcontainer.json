@@ -1,5 +1,6 @@
 {
   "name": "Arch Linux Dev Container",
+  "image": "revcontent:verstappen",
   "build": {
     "dockerfile": "Dockerfile",
     "context": "..",
